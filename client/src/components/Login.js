@@ -18,7 +18,7 @@ const Login = () => {
     } else {
       setIsLoggedIn(false)
     }
-  })
+  }, [])
 
   const login = e => {
     e.preventDefault();

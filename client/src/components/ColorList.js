@@ -17,6 +17,7 @@ const axiosWithAuth = () => {
 const ColorList = ({ colors, updateColors }) => {
   const [editing, setEditing] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor);
+  const [colorToAdd, setColorToAdd] = useState(initialColor);
 
   const editColor = color => {
     setEditing(true);
@@ -48,6 +49,15 @@ const ColorList = ({ colors, updateColors }) => {
       console.error(err);
     })
   };
+
+  const addColor = e => {
+    e.preventDefault();
+    axiosWithAuth().post(`http://localhost:5000/api/colors`, colorToAdd)
+    .then(res => {
+      console.log(res);
+      updateColors(res.data);
+    })
+  }
 
   return (
     <div className="colors-wrap">
@@ -104,8 +114,37 @@ const ColorList = ({ colors, updateColors }) => {
           </div>
         </form>
       )}
+      {/* add color code here */}
+            <form onSubmit={addColor}>
+          <label>
+            color name:
+            <input
+              onChange={e =>
+                setColorToAdd({ ...colorToAdd, color: e.target.value })
+              }
+              name='name'
+              value={colorToAdd.color}
+            />
+                      <label>
+            hex code:
+            <input
+              onChange={e =>
+                setColorToAdd({
+                  ...colorToAdd,
+                  code: { hex: e.target.value }
+                })
+              }
+              name='code'
+              value={colorToAdd.code.hex}
+            />
+          </label>
+          <br/>
+          <div className="button-row">
+            <button type="submit">Add</button>
+          </div>
+          </label>
+      </form>
       <div className="spacer" />
-      {/* stretch - build another form here to add a color */}
     </div>
   );
 };
