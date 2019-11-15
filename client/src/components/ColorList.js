@@ -42,7 +42,6 @@ const ColorList = ({ colors, updateColors }) => {
     console.log(color);
     axiosWithAuth().delete(`http://localhost:5000/api/colors/${color.id}`)
     .then(res => {
-      console.log(res);
       updateColors(res.data)
     })
     .catch(err => {
@@ -54,7 +53,6 @@ const ColorList = ({ colors, updateColors }) => {
     e.preventDefault();
     axiosWithAuth().post(`http://localhost:5000/api/colors`, colorToAdd)
     .then(res => {
-      console.log(res);
       updateColors(res.data);
     })
     .catch(err => {
