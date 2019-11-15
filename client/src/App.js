@@ -23,7 +23,7 @@ function App() {
           display BubblePage when you're authenticated 
         */}
         <Switch>
-          <PrivateRoute path='/protected'>
+          <PrivateRoute path='/bubbles'>
             <BubblePage />
           </PrivateRoute>
           <Route exact path="/login" component={Login} />
