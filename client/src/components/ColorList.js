@@ -57,6 +57,9 @@ const ColorList = ({ colors, updateColors }) => {
       console.log(res);
       updateColors(res.data);
     })
+    .catch(err => {
+      console.error(err);
+    })
   }
 
   return (

@@ -22,7 +22,6 @@ const BubblePage = () => {
       headers: { authorization: localStorage.getItem('token') }
     })
     .then(res => {
-      console.log(res);
       setColorList(res.data)
     })
     .catch(error => {
